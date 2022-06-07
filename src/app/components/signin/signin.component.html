@@ -1,0 +1,50 @@
+<div class="container" *ngIf="!isLoading">
+  <img src="assets/img/logos/logo.svg" width='150rem' alt="logo">
+
+  <form [formGroup]="signinForm" (ngSubmit)="loginUser()">
+
+      <div class="form-group">
+      <mat-form-field appearance="outline">
+        <mat-label>
+          Entrer votre email
+          <span class="text-danger fw-bold fs-5" *ngIf="signinForm.controls['username'].hasError('required')">
+            *
+          </span>
+        </mat-label>
+              <input matInput placeholder="Entrez votre email *"  formControlName="username">
+              <mat-error [hidden]="signinForm.controls['username'].untouched || signinForm.controls['username'].valid" >
+                  Veuillez renseigner votre email
+              </mat-error>
+            </mat-form-field>
+      </div>
+
+
+      <div>
+      <mat-form-field appearance="outline">
+          <mat-label>
+            Entrer votre mot de passe
+            <span class="text-danger fw-bold fs-5" *ngIf="signinForm.controls['password'].hasError('required')">
+              *
+            </span>
+          </mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'" id="password" formControlName="password">
+          <mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </mat-icon-button>
+          <mat-error [hidden]="signinForm.controls['password'].untouched || signinForm.controls['password'].valid" >
+              Veuillez préciser le mot de passe
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div *ngIf="errorLogin">
+        <p style="color: #CE0033; font-weight: bold">
+          {{errorLogin}}
+        </p>
+      </div>
+      <button mat-flat-button color="warn" type="submit" [disabled]="signinForm.invalid">Se connecter</button>
+  </form>
+</div>
+<div fxLayout="column" fxLayoutAlign="space-evenly center" *ngIf="isLoading" class="connexion">
+  <div class="co_title">Connexion en cours...</div>
+  <mat-progress-spinner mode="indeterminate" color="warn"></mat-progress-spinner>
+</div>

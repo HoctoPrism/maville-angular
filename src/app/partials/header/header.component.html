@@ -1,0 +1,32 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between">
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <div *ngIf="logged == true">
+        <button fxLayoutAlign="center" mat-icon-button [matMenuTriggerFor]="menu"> <mat-icon >menu</mat-icon> </button>
+        <mat-menu #menu="matMenu">
+          <button class="size-menu-deroulant color-text" mat-menu-item routerLink="accueil">Accueil</button>
+          <button class="size-menu-deroulant color-text" mat-menu-item *ngIf="user.roles =='ROLE_ADMIN'" [matMenuTriggerFor]="admin">Administration</button>
+        </mat-menu>
+        <mat-menu #admin="matMenu">
+          <button class="size-menu-deroulant color-text" mat-menu-item routerLink="admin/user">Utilisateurs</button>
+        </mat-menu>
+      </div>
+      <h1 fxHide.xs>{{ title }}</h1>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="flex-start center">
+      <div fxLayout="row" fxLayoutAlign="space-between center" class="theme-widget">
+        <mat-icon class="sunny">wb_sunny</mat-icon>
+        <mat-slide-toggle (click)="onSwitch()" id="darkMode" [checked]="checked"></mat-slide-toggle>
+        <mat-icon class="moon">shield_moon</mat-icon>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="center center">
+        <a *ngIf="!this.authService.isLoggedIn" routerLinkActive="active" routerLink="/login">Se connecter</a>
+        <a href="#" class="align-search" (click)="logout()" *ngIf="this.authService.isLoggedIn">
+          <mat-icon class="logo-exit">exit_to_app</mat-icon></a>
+        <button mat-flat-button class="mat-warn bouton-exit color-text-button-red" (click)="logout()" *ngIf="this.authService.isLoggedIn"
+                type="button">Se déconnecter</button>
+      </div>
+    </div>
+  </mat-toolbar-row>
+
+</mat-toolbar>

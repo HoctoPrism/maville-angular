@@ -1,0 +1,67 @@
+<div class="container">
+    <mat-grid-list cols="4" rowHeight="fit" colHeight="fit" gutterSize="10px" style="height: 700px">
+
+        <mat-grid-tile rowspan="1" colspan="4" >
+            <div fxLayout="row" fxLayoutAlign="space-evenly center">
+                <mat-progress-spinner mode="indeterminate" color="warn" *ngIf="isLoading"></mat-progress-spinner>
+            </div>
+            <div *ngIf="!isLoading">
+                <table mat-table class="mat-elevation-z8 bg-theme text-theme tableStripe w-100" [dataSource]="users">
+                    <!-- Id Column -->
+                    <ng-container matColumnDef="id">
+                        <th mat-header-cell *matHeaderCellDef> ID </th>
+                        <td mat-cell *matCellDef="let user">
+                            <div *ngIf="user.id" title="{{user.id}}"> {{user.id}} </div>
+                        </td>
+                    </ng-container>
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="lastname">
+                        <th mat-header-cell *matHeaderCellDef> NOM </th>
+                        <td mat-cell *matCellDef="let user">
+                            <div *ngIf="user.lastname" title="{{user.lastname}}"> {{user.lastname}} </div>
+                        </td>
+                    </ng-container>
+                    <!-- Prenom Column -->
+                    <ng-container matColumnDef="firstname">
+                        <th mat-header-cell *matHeaderCellDef> PRENOM </th>
+                        <td mat-cell *matCellDef="let user">
+                            <div *ngIf="user.firstname" title="{{user.firstname}}"> {{user.firstname}} </div>
+                        </td>
+                    </ng-container>
+                    <!-- Username Column -->
+                    <ng-container matColumnDef="username">
+                        <th mat-header-cell *matHeaderCellDef>USERNAME</th>
+                        <td mat-cell *matCellDef="let user">
+                            <div *ngIf="user.username" title="{{user.username}}"> {{user.username}} </div>
+                        </td>
+                    </ng-container>
+                    <!-- Roles Column -->
+                    <ng-container matColumnDef="roles">
+                        <th mat-header-cell *matHeaderCellDef>ROLES</th>
+                        <td mat-cell *matCellDef="let user" title="{{user.roles}}">
+                            <div *ngIf="user.roles"> {{user.roles}} </div>
+                        </td>
+                    </ng-container>
+                    <!-- Options Column -->
+                    <ng-container matColumnDef="options">
+                        <th mat-header-cell *matHeaderCellDef class="text-end">
+                            <td mat-cell *matCellDef="let users" class="text-end">
+                            <a (click)="updateDialog(users.id, users.firstname, users.lastname, users.username, users.roles)">
+                                <mat-icon> border_color</mat-icon>
+                            </a>
+                            <a (click)="deleteDialog(users.id, users.username)">
+                                <mat-icon>delete</mat-icon>
+                            </a>
+                        </td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+                <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page" class="bg-theme text-theme"></mat-paginator>
+            </div>
+            <div class="margin-button" fxLayoutAlign="end">
+              <button class="color-text-button-red" mat-flat-button color="warn" (click)="newDialog()">Créer un utilisateur</button>
+            </div>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>

@@ -1,0 +1,74 @@
+.size-menu-deroulant {
+  width: 200px;
+  /* background-color: #A5B1C6;*/
+}
+
+.cdk-overlay-connected-position-bounding-box {
+  left: 0 !important;
+  height: 450px !important;
+}
+
+.theme-widget {
+  margin-right: 2rem;
+}
+
+mat-icon.mat-icon.notranslate.material-icons.mat-icon-no-color {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+a.mat-focus-indicator.mat-button.mat-button-base {
+  margin-right: 0 !important;
+}
+
+button.mat-focus-indicator.mat-icon-button.mat-button-base {
+  margin-right: 0 !important;
+}
+
+.align-search {
+  display: flex !important;
+  justify-content: center !important;
+}
+
+.inline-profil-search.ng-star-inserted {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  padding: 0 25px 0 30px;
+}
+
+button.mat-focus-indicator.mat-warn.mat-flat-button.mat-button-base.ng-star-inserted {
+  margin-right: 0 !important;
+}
+
+@media (max-width: 1023px) {
+  h1 {
+    display: none;
+  }
+}
+
+h1 {
+  padding-left: 15px !important;
+}
+
+.sunny {
+  padding-right: 15px;
+}
+
+.moon {
+  padding-left: 15px;
+}
+
+/* cache le logo logout */
+@media (min-width: 426px) {
+  .logo-exit {
+    display: none;
+  }
+}
+
+/* cache le bouton se deconnecter */
+@media (min-width: 0px) and (max-width: 426px) {
+  .bouton-exit {
+    display: none;
+  }
+}
+

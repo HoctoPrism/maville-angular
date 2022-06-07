@@ -1,0 +1,84 @@
+<div fxLayout="row" fxLayoutAlign="space-evenly center">
+    <mat-progress-spinner mode="indeterminate" color="warn" *ngIf="isLoading" ></mat-progress-spinner>
+</div>
+
+<div *ngIf="!isLoading">
+    <div class="container">
+        <form [formGroup]="newUserForm" (ngSubmit)="newUser()" fxLayout="column" fxLayoutAlign="center center">
+
+            <h3>Créer un utilisateur</h3>
+            <div>
+                <div fxLayout="column" fxLayoutAlign="center center">
+                <div *ngIf="err" class="text-warn">
+                    {{ err.username }}
+                </div>
+                <mat-form-field appearance="outline">
+                    <mat-label>
+                        Prenom
+                        <span *ngIf="newUserForm.controls['firstname'].hasError('required')">
+                            *
+                        </span>
+                    </mat-label>
+                    <input matInput placeholder="Entrez un prenom" formControlName="firstname">
+                    <mat-error [hidden]="newUserForm.controls['firstname'].untouched || newUserForm.controls['firstname'].valid">
+                        Veuillez renseigner prenom pour l'user
+                    </mat-error>
+                </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>
+                   Nom
+                    <span *ngIf="newUserForm.controls['lastname'].hasError('required')">
+                        *
+                    </span>
+                </mat-label>
+                <input matInput placeholder="Entrez un nom" formControlName="lastname">
+                <mat-error [hidden]="newUserForm.controls['lastname'].untouched || newUserForm.controls['lastname'].valid">
+                    Veuillez renseigner nom pour l'user
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>
+                   Username
+                    <span *ngIf="newUserForm.controls['username'].hasError('required')">
+                        *
+                    </span>
+                </mat-label>
+                <input matInput placeholder="Entrez username" formControlName="username">
+                <mat-error [hidden]="newUserForm.controls['username'].valid">
+                    <mat-error *ngIf="newUserForm.controls['username'].hasError('email'); else second" class="text-warn">
+                        Veuillez reseigner un email valide
+                    </mat-error>
+                    <ng-template #second>
+                        <mat-error *ngIf="newUserForm.controls['username'].touched; else third"  class="text-warn">
+                           un email est requis
+                        </mat-error>
+                    </ng-template>
+                    <ng-template #third></ng-template>
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>
+                    Roles
+                    <span *ngIf=" newUserForm.controls['roles'].hasError('required')">
+                        *
+                    </span>
+                </mat-label>
+                <mat-select formControlName="roles">
+                  <mat-option value="ROLE_USER">User</mat-option>
+                  <mat-option value="ROLE_ADMIN">Admin</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+        </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <button mat-flat-button color="warn" type="submit" [disabled]="newUserForm.invalid" >Valider</button>
+            <button mat-button mat-dialog-close class="button-close">Annuler</button>
+        </div>
+        </form>
+
+    </div>
+</div>

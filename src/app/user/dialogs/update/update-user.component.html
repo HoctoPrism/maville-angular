@@ -1,0 +1,81 @@
+<div fxLayout="row" fxLayoutAlign="space-evenly center">
+    <mat-progress-spinner mode="indeterminate" color="warn" *ngIf="isLoading" ></mat-progress-spinner>
+</div>
+
+
+<div *ngIf="!isLoading">
+    <div class="container">
+        <form [formGroup]=" updateUserForm" (ngSubmit)="UpdateUser()">
+
+            <h3>Editer un utilisateur</h3>
+            <div>
+                <div fxLayout="column" fxLayoutAlign="center center">
+                <div *ngIf="err" class="text-warn">
+                    {{ err.name }}
+                </div>
+                <mat-form-field appearance="outline">
+                    <mat-label>
+                      Prenom
+                        <span *ngIf="updateUserForm.controls['firstname'].hasError('required')">
+                            *
+                        </span>
+                    </mat-label>
+                    <input matInput placeholder="{{ data.firsname }}" formControlName="firstname">
+                    <mat-error [hidden]=" updateUserForm.controls['firstname'].untouched || updateUserForm.controls['firstname'].valid">
+                        Veuillez renseigner prenom pour l'user
+                    </mat-error>
+                </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>
+                    Nom
+                    <span *ngIf=" updateUserForm.controls['lastname'].hasError('required')">
+                        *
+                    </span>
+                </mat-label>
+                <input matInput placeholder="{{ data.lastname }}" formControlName="lastname">
+                <mat-error [hidden]=" updateUserForm.controls['lastname'].untouched ||  updateUserForm.controls['lastname'].valid">
+                    Veuillez renseigner nom pour l'user
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>
+                   Username
+                    <span *ngIf=" updateUserForm.controls['username'].hasError('required')">
+                        *
+                    </span>
+                </mat-label>
+                <input matInput placeholder="{{ data.username }}" formControlName="username">
+                <mat-error [hidden]="updateUserForm.controls['username'].valid">
+                    <mat-error *ngIf="updateUserForm.controls['username'].hasError('email'); else second" class="text-warn">
+                        Veuillez reseigner un email valide
+                    </mat-error>
+                    <ng-template #second>
+                        <mat-error *ngIf="updateUserForm.controls['username'].touched; else third"  class="text-warn">
+                           un email est requis
+                        </mat-error>
+                    </ng-template>
+                    <ng-template #third></ng-template>
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>{{ data.roles }}</mat-label>
+                <mat-select formControlName="roles">
+                  <mat-option value="ROLE_USER">User</mat-option>
+                  <mat-option value="ROLE_ADMIN">Admin</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+        </div>
+
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <button mat-flat-button color="warn" type="submit" [disabled]="updateUserForm.invalid" >Valider</button>
+            <button mat-button mat-dialog-close class="button-close">Annuler</button>
+        </div>
+        </form>
+
+    </div>
+</div>
