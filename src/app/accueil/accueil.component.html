@@ -1,1 +1,23 @@
-<p>accueil works!</p>
+<section class="container">
+    <h1 class="text-center">Liste des Festivals/Festivaux</h1>
+
+    <div fxLayout="row" fxLayoutAlign="space-evenly center">
+        <mat-progress-spinner mode="indeterminate" color="warn" *ngIf="isLoading"></mat-progress-spinner>
+    </div>
+
+    <div *ngIf="!isLoading">
+        <mat-grid-list cols="5" rowHeight="fit" colHeight="fit" style="height: 400px" gutterSize="10px" >
+            <mat-grid-tile rowspan="1" colspan="1" *ngFor="let festival of festivals">
+                <mat-card class="festival-card" ng-style="{'background: linear-gradient(145deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 69%, rgba(207,206,99,1) 100%);' }">
+                    <div>{{ festival.name }}</div>
+                    <div>{{ festival.type }}</div>
+                    <div>{{ festival.description }}</div>
+                    <div>
+                        <span>{{ festival.date_start|date: 'dd/MM/YYYY HH:mm' }}</span> au <span>{{ festival.date_end|date: 'dd/MM/YYYY HH:mm' }}</span>
+                    </div>
+                </mat-card>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </div>
+
+</section>

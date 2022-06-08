@@ -135,6 +135,9 @@ $dark-theme: mat.define-dark-theme(( color: ( primary: $dark-palette, accent: $l
   .bg-theme {
     background-color: mat-color($dark-palette) !important;
   }
+  .festival-card {
+    color: mat-color($dark-palette, 500) !important;
+  }
   .tableStripe {
     .mat-row:nth-child(even){
       background-color:mat-color($dark-palette);
@@ -260,6 +263,10 @@ $dark-theme: mat.define-dark-theme(( color: ( primary: $dark-palette, accent: $l
   a {
     color: mat-color($dark-palette) !important;
     text-decoration: none;
+  }
+  .festival-card {
+    background-color: mat-color($dark-palette) !important;
+    color: mat-color($dark-palette, 50) !important;
   }
   .text-theme {
     color: mat-color($dark-palette) !important;

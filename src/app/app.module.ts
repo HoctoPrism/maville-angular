@@ -43,6 +43,13 @@ import { NewFestivalComponent } from './festival/dialogs/new/new-festival.compon
 import { UpdateFestivalComponent } from './festival/dialogs/update/update-festival.component';
 import { DeleteFestivalComponent } from './festival/dialogs/delete/delete-festival.component';
 import { DatePipe } from '@angular/common';
+import { MatColorFormats, MAT_COLOR_FORMATS, NgxMatColorPickerModule } from '@angular-material-components/color-picker';
+
+export const NGX_MAT_COLOR_FORMATS: MatColorFormats = {
+  display: {
+    colorInput: 'hex'
+  }
+}
 
 @NgModule({
   declarations: [
@@ -93,10 +100,12 @@ import { DatePipe } from '@angular/common';
     MatDialogModule,
     MatSelectModule,
     MatMenuModule,
+    NgxMatColorPickerModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: MAT_DATE_LOCALE, useValue: 'fr-FR' },
+    { provide: MAT_COLOR_FORMATS, useValue: NGX_MAT_COLOR_FORMATS },
     DatePipe
   ],
   bootstrap: [AppComponent]

@@ -66,11 +66,18 @@
                             <ng-template #non> NON </ng-template>
                         </td>
                     </ng-container>
+                    <!-- Color Column -->
+                    <ng-container matColumnDef="color">
+                        <th mat-header-cell *matHeaderCellDef> COULEUR </th>
+                        <td mat-cell *matCellDef="let festival">
+                            <div *ngIf="festival.color" title="{{festival.color}}"  id="cercle" [style.background]="festival.color"></div>
+                        </td>
+                    </ng-container>
                     <!-- Options Column -->
                     <ng-container matColumnDef="options">
                         <th mat-header-cell *matHeaderCellDef class="text-end">
                             <td mat-cell *matCellDef="let festivals" class="text-end">
-                            <a (click)="updateDialog(festivals.id, festivals.name, festivals.description, festivals.type, festivals.image, festivals.date_start, festivals.date_end, festivals.cancelled)">
+                            <a (click)="updateDialog(festivals.id, festivals.name, festivals.description, festivals.type, festivals.image, festivals.date_start, festivals.date_end, festivals.cancelled, festivals.color)">
                                 <mat-icon> border_color </mat-icon>
                             </a>
                             <a (click)="deleteDialog(festivals.id, festivals.name)">

@@ -22,7 +22,7 @@ export class FestivalComponent implements OnInit {
   endpoint: string = environment.apiUrl;
   err: any;
   festivals: any;
-  displayedColumns = ["id", "name", "description", "type", "image", "date_start", "date_end", "cancelled", "options"];
+  displayedColumns = ["id", "name", "description", "type", "image", "date_start", "date_end", "cancelled", "color", "options"];
   oneFestival: any;
   newDialogRef?: MatDialogRef<NewFestivalComponent>;
   updateDialogRef?: MatDialogRef<UpdateFestivalComponent>;
@@ -90,8 +90,8 @@ export class FestivalComponent implements OnInit {
     })
   }
   // Open a dialog that processes the organisme PUT
-  updateDialog(id: number, name: string, description: string, type: string, image: string, date_start: string, date_end: string, cancelled: boolean) {
-    this.oneFestival = [id, name, description, type, image, date_start, date_end, cancelled]
+  updateDialog(id: number, name: string, description: string, type: string, image: string, date_start: string, date_end: string, cancelled: boolean, color:string) {
+    this.oneFestival = [id, name, description, type, image, date_start, date_end, cancelled, color]
     this.updateDialogRef = this.dialog.open(UpdateFestivalComponent, {
       data: {
         id: id,
@@ -102,6 +102,7 @@ export class FestivalComponent implements OnInit {
         date_start: date_start,
         date_end: date_end,
         cancelled: cancelled,
+        color: color,
       }, disableClose: true
     })
     this.updateDialogRef?.componentInstance.errorSend.subscribe(result => {

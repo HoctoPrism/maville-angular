@@ -84,6 +84,17 @@
                   <mat-option value="false">Non</mat-option>
                 </mat-select>
             </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>{{ data.color }}
+                  <span class="text-danger fw-bold fs-5" *ngIf="updateFestivalForm.controls['color'].hasError('required')">
+                      *
+                  </span>
+              </mat-label>
+              <input matInput [ngxMatColorPicker]="picker" formControlName="color"/>
+              <ngx-mat-color-toggle matSuffix [for]="picker"></ngx-mat-color-toggle>
+              <ngx-mat-color-picker #picker></ngx-mat-color-picker>
+  
+          </mat-form-field>
 
         </div>
         </div>

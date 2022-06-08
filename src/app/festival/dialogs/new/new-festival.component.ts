@@ -33,6 +33,8 @@ export class NewFestivalComponent implements OnInit {
       image: [''],
       date_start: ['', Validators.required],
       date_end: ['', Validators.required],
+      cancelled: [''],
+      color: ['']
     });
 
   }

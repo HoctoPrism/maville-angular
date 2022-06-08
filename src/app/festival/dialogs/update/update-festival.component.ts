@@ -31,6 +31,7 @@ export class UpdateFestivalComponent implements OnInit {
         date_start: ['', Validators.required],
         date_end: ['', Validators.required],
         cancelled: [''],
+        color: ['']
       });
 
       this.updateFestivalForm.get('name')?.setValue(data.name);
@@ -39,7 +40,8 @@ export class UpdateFestivalComponent implements OnInit {
       this.updateFestivalForm.get('image')?.setValue(data.image);
       this.updateFestivalForm.get('date_start')?.setValue(data.date_start);
       this.updateFestivalForm.get('date_end')?.setValue(data.date_end);
-      this.updateFestivalForm.get('cancelled')?.setValue(data.cancelled.toString());
+      this.updateFestivalForm.get('cancelled')?.setValue(data.cancelled);
+      this.updateFestivalForm.get('color')?.setValue(data.color);
     }
 
     closeDialog() {
