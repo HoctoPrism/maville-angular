@@ -8,8 +8,8 @@ import { ConnexionGuard } from './guard/connexion-guard';
 import { UserComponent } from './user/user.component';
 
 const routes: Routes = [
-  { path: "accueil", component: AccueilComponent, canActivate: [ConnexionGuard]},
-  { path: "", component: SigninComponent},
+  { path: "accueil", component: AccueilComponent},
+  { path: "", component: AccueilComponent},
   { path: "login", component: SigninComponent },
   {
     path: 'admin', component: AdminComponent,
