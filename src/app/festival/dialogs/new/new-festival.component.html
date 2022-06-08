@@ -1,0 +1,87 @@
+<div fxLayout="row" fxLayoutAlign="space-evenly center">
+    <mat-progress-spinner mode="indeterminate" color="warn" *ngIf="isLoading" ></mat-progress-spinner>
+</div>
+
+<div *ngIf="!isLoading">
+    <div class="container">
+        <form [formGroup]="newFestivalForm" (ngSubmit)="newFestival()" fxLayout="column" fxLayoutAlign="center center">
+
+            <h3>Créer un festival</h3>
+            <div>
+                <div fxLayout="column" fxLayoutAlign="center center">
+                <div *ngIf="err" class="text-warn">
+                    {{ err.name }}
+                </div>
+                <mat-form-field appearance="outline">
+                    <mat-label>
+                        Nom du festival
+                        <span *ngIf="newFestivalForm.controls['name'].hasError('required')">
+                            *
+                        </span>
+                    </mat-label>
+                    <input matInput placeholder="Entrez un nom" formControlName="name">
+                    <mat-error [hidden]="newFestivalForm.controls['name'].untouched || newFestivalForm.controls['name'].valid">
+                        Veuillez renseigner nom pour le festival
+                    </mat-error>
+                </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>
+                   Description
+                </mat-label>
+                <input matInput placeholder="Entrez une description" formControlName="description">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>
+                   Type
+                </mat-label>
+                <input matInput placeholder="Entrez un type (musique, art...)" formControlName="type">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>
+                   image
+                </mat-label>
+                <input matInput placeholder="Entrez une image" formControlName="image">
+            </mat-form-field>
+
+            <div fxLayout="column" fxLayoutAlign="center center">
+                <div class="form-group">
+                  <mat-form-field color="accent" appearance="outline">
+                    <mat-label>
+                      Date début
+                      <span class="fw-bold fs-5" *ngIf="newFestivalForm.controls['date_start'].hasError('required')">
+                        *
+                      </span>
+                    </mat-label>
+                    <input matInput [matDatepicker]="picker1" formControlName="date_start">
+                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1 color="warn"></mat-datepicker>
+                  </mat-form-field>
+                </div>
+                <div class="form-group">
+                  <mat-form-field color="accent" appearance="outline">
+                    <mat-label>
+                      Date fin
+                      <span class="fw-bold fs-5" *ngIf="newFestivalForm.controls['date_end'].hasError('required')">
+                        *
+                      </span>
+                    </mat-label>
+                    <input matInput [matDatepicker]="picker2" formControlName="date_end" >
+                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2 color="warn"></mat-datepicker>
+                  </mat-form-field>
+                </div>
+            </div>
+
+        </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <button mat-flat-button color="warn" type="submit" [disabled]="newFestivalForm.invalid" >Valider</button>
+            <button mat-button mat-dialog-close class="button-close">Annuler</button>
+        </div>
+        </form>
+
+    </div>
+</div>

@@ -126,6 +126,9 @@ $dark-theme: mat.define-dark-theme(( color: ( primary: $dark-palette, accent: $l
     color: mat-color($light-palette) !important;
     text-decoration: none;
   }
+  .mat-input-element {
+    caret-color: mat-color($dark-palette, 50) !important
+  }
   .text-theme {
     color: mat-color($light-palette) !important;
   }
@@ -159,7 +162,7 @@ $dark-theme: mat.define-dark-theme(( color: ( primary: $dark-palette, accent: $l
   }
   // Burger menu
   .mat-menu-content {
-    background-color: #1e2334;
+    background-color: mat-color($dark-palette, 600);
     color: #b6b4ca;
   }
 
@@ -207,6 +210,7 @@ $dark-theme: mat.define-dark-theme(( color: ( primary: $dark-palette, accent: $l
     color: #CE0033;
   }
 
+
   // custom des commentaires
   .container-commentaire {
     margin-bottom: 50px;
@@ -230,11 +234,17 @@ $dark-theme: mat.define-dark-theme(( color: ( primary: $dark-palette, accent: $l
   // couleur des filtres admin
   .mat-select-panel {
     color: #b6b4ca !important;
-    background-color: #1e2334 !important;
+    background-color: mat-color($dark-palette, 600) !important;
     position: absolute !important;
     left: 5px !important;
     top: 40px !important;
     min-width: 110% !important;
+  }
+  .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+    color: mat-color($dark-palette, 50);
+  }
+  .mat-form-field.mat-focused .mat-form-field-label {
+    color: mat-color($dark-palette, 50);
   }
 
   // couleur des filtres admin au hover

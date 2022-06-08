@@ -6,6 +6,7 @@ import { SigninComponent } from './partials/signin/signin.component';
 import { AuthGuard } from './guard/auth-guard';
 import { ConnexionGuard } from './guard/connexion-guard';
 import { UserComponent } from './user/user.component';
+import { FestivalComponent } from './festival/festival.component';
 
 const routes: Routes = [
   { path: "accueil", component: AccueilComponent},
@@ -19,6 +20,7 @@ const routes: Routes = [
     },
     children: [
       { path: 'user', component: UserComponent },
+      { path: 'festival', component: FestivalComponent },
     ]
   }
 ];

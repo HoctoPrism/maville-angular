@@ -27,7 +27,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { NewUserComponent } from './user/dialogs/new/new-user.component';
 import { UserComponent } from './user/user.component';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -38,6 +38,11 @@ import { UpdateUserComponent } from './user/dialogs/update/update-user.component
 import { DeleteUserComponent } from './user/dialogs/delete/delete-user.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { ModifyPasswordComponent } from './user/dialogs/modify-password/modify-password.component';
+import { FestivalComponent } from './festival/festival.component';
+import { NewFestivalComponent } from './festival/dialogs/new/new-festival.component';
+import { UpdateFestivalComponent } from './festival/dialogs/update/update-festival.component';
+import { DeleteFestivalComponent } from './festival/dialogs/delete/delete-festival.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -51,7 +56,11 @@ import { ModifyPasswordComponent } from './user/dialogs/modify-password/modify-p
     NewUserComponent,
     UpdateUserComponent,
     DeleteUserComponent,
-    ModifyPasswordComponent
+    ModifyPasswordComponent,
+    FestivalComponent,
+    NewFestivalComponent,
+    UpdateFestivalComponent,
+    DeleteFestivalComponent
   ],
   imports: [
     BrowserModule,
@@ -86,7 +95,9 @@ import { ModifyPasswordComponent } from './user/dialogs/modify-password/modify-p
     MatMenuModule,
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: MAT_DATE_LOCALE, useValue: 'fr-FR' },
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })
