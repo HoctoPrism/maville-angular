@@ -138,6 +138,25 @@ $dark-theme: mat.define-dark-theme(( color: ( primary: $dark-palette, accent: $l
   .festival-card {
     color: mat-color($dark-palette, 500) !important;
   }
+  .festival-list {
+    margin-top: 5rem;
+  }
+  .festival_name {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  .festival_type {
+    margin: 5px 0;
+  }
+  .festival_date {
+    margin: 8px 0;
+  }
+  .inner-festival-card {
+    background-color: mat-color($dark-palette, 800);
+    color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+  }
   .tableStripe {
     .mat-row:nth-child(even){
       background-color:mat-color($dark-palette);
@@ -267,6 +286,25 @@ $dark-theme: mat.define-dark-theme(( color: ( primary: $dark-palette, accent: $l
   .festival-card {
     background-color: mat-color($dark-palette) !important;
     color: mat-color($dark-palette, 50) !important;
+  }
+  .festival-list {
+    margin-top: 5rem;
+  }
+  .festival_name {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  .festival_type {
+    margin: 5px 0;
+  }
+  .festival_date {
+    margin: 8px 0;
+  }
+  .inner-festival-card {
+    background-color: mat-color($dark-palette, 500);
+    color: #fff;
+    padding: 20px;
+    border-radius: 5px;
   }
   .text-theme {
     color: mat-color($dark-palette) !important;

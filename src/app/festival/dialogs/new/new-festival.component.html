@@ -39,23 +39,16 @@
                 <input matInput placeholder="Entrez un type (musique, art...)" formControlName="type">
             </mat-form-field>
 
-            <mat-form-field appearance="outline">
-                <mat-label>
-                   image
-                </mat-label>
-                <input matInput placeholder="Entrez une image" formControlName="image">
-            </mat-form-field>
-
             <div fxLayout="column" fxLayoutAlign="center center">
                 <div class="form-group">
                   <mat-form-field color="accent" appearance="outline">
                     <mat-label>
                       Date début
-                      <span class="fw-bold fs-5" *ngIf="newFestivalForm.controls['date_start'].hasError('required')">
+                      <span class="fw-bold fs-5" *ngIf="newFestivalForm.controls['dateStart'].hasError('required')">
                         *
                       </span>
                     </mat-label>
-                    <input matInput [matDatepicker]="picker1" formControlName="date_start">
+                    <input matInput [matDatepicker]="picker1" formControlName="dateStart">
                     <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                     <mat-datepicker #picker1 color="warn"></mat-datepicker>
                   </mat-form-field>
@@ -64,11 +57,11 @@
                   <mat-form-field color="accent" appearance="outline">
                     <mat-label>
                       Date fin
-                      <span class="fw-bold fs-5" *ngIf="newFestivalForm.controls['date_end'].hasError('required')">
+                      <span class="fw-bold fs-5" *ngIf="newFestivalForm.controls['dateEnd'].hasError('required')">
                         *
                       </span>
                     </mat-label>
-                    <input matInput [matDatepicker]="picker2" formControlName="date_end" >
+                    <input matInput [matDatepicker]="picker2" formControlName="dateEnd" >
                     <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                     <mat-datepicker #picker2 color="warn"></mat-datepicker>
                   </mat-form-field>

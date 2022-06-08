@@ -12,8 +12,6 @@ export class AccueilComponent implements OnInit {
 
   festivals:any = [];
   isLoading = false;
-  colors = ['#63cf72', '#63bdcf', '#b763cf', '#cfce63', '#cf9163', '#8ccf63', '#cf6363'];
-  colorsTab = [];
 
   constructor(
     private headerTitleService: HeaderTitleService,
@@ -26,10 +24,25 @@ export class AccueilComponent implements OnInit {
     this.festivalService.getAllFestivals().subscribe((res) => {
       this.isLoading = true;
       this.festivals = res;
-      // défini comme clé l'id d'un festival et pioche dans le tableau de couleur de manière random
-      this.colorsTab = this.festivals.map((value: any) => ({['color'+value.id]: this.colors[Math.floor(Math.random() * this.colors.length)]}))
       this.isLoading = false;
     });
+  }
+
+  myStyle(color:string){
+    let styles = {
+      'background':'linear-gradient(145deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.7) 35%,' + color + ' 100%), url("./assets/img/image.jpg")',
+      'background-repeat':'no-repeat',
+      'background-size': '6px, auto, contain'
+    };
+    return styles;
+  }
+
+  myStyleColor(color:string){
+    let styles = {
+      'color': color,
+      'font-weight': 'bold'
+    };
+    return styles;
   }
 
   ngOnInit(): void {

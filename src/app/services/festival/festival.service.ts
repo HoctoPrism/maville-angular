@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import {environment} from "../../../environments/environment";
+import { UserService } from '../user/user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,9 +14,17 @@ export class FestivalService {
   endpoint: string = environment.apiUrl;
   err: any;
   msg = '';
+  user: any;
   dataChange: BehaviorSubject<any> = new BehaviorSubject<any>([]);
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient, 
+    private userService: UserService
+  ) {
+    this.userService.currentUser().subscribe(
+      data => { this.user = data },
+      err => { err.status }
+    );
   }
 
   // Get all festivals
@@ -49,6 +58,7 @@ export class FestivalService {
 
   // Put festival -> Ask for the form value
   updateFestival(form: any, id: number) {
+    form['user'] = this.user.id;
     this.err = null;
     let str = "";
     if(typeof form['color'] === 'object'){
@@ -61,8 +71,8 @@ export class FestivalService {
         "description": form["description"],
         "type": form["type"],
         "image": form["image"],
-        "date_start": form["date_start"],
-        "date_end": form["date_end"],
+        "dateStart": form["dateStart"],
+        "dateEnd": form["dateEnd"],
         "cancelled": form["cancelled"],
         "color": form["color"]
       }
