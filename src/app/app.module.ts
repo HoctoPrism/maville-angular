@@ -20,7 +20,7 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatCardModule } from '@angular/material/card'
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { SigninComponent } from './components/signin/signin.component';
+import { SigninComponent } from './partials/signin/signin.component';
 import { AuthInterceptor } from './interceptor/auth-interceptor';
 import { AdminComponent } from './admin/admin.component';
 import { MatTableModule } from '@angular/material/table';
