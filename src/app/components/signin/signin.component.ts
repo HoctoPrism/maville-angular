@@ -17,7 +17,6 @@ export class SigninComponent implements OnInit {
   signinForm: FormGroup;
   isLoading = false;
   user: any;
-  firstData: any;
   err: any;
   errorLogin!: string;
 
@@ -47,12 +46,12 @@ export class SigninComponent implements OnInit {
     this.isLoading = true;
     this.authService.signIn(this.signinForm.value)
     this.authService.errorSend.subscribe(
-      data => {
+      data => { 
         if(data == 'none') {
-          this.firstData = data;
           this.userService.currentUser().subscribe(
             data => {
               this.user = data;
+              this.router.navigate(['accueil']);
             }
           )
         } else {
