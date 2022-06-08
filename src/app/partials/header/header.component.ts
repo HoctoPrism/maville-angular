@@ -1,11 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { JWTTokenService } from 'src/app/services/JWT/jwttoken.service';
 import { UserService } from 'src/app/services/user/user.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { HeaderTitleService } from 'src/app/services/header-title/header-title.service';
 import { ThemeModeService } from 'src/app/services/theme-mode/theme-mode.service';
+import { ModifyPasswordComponent } from 'src/app/user/dialogs/modify-password/modify-password.component';
 
 @Component({
   selector: 'app-header',
@@ -20,6 +21,9 @@ export class HeaderComponent implements OnInit {
   checked: any;
   logged: any;
   categories: any;
+  modifyPasswordDialogRef?: MatDialogRef<ModifyPasswordComponent>;
+  isLoading = false;
+  err:any;
 
   constructor(
     public userService: UserService,
@@ -70,6 +74,23 @@ export class HeaderComponent implements OnInit {
       );
     }
   }
+
+    // Open a dialog that processes the user POST (new)
+    modifyPasswordDialog(id:number){
+      this.modifyPasswordDialogRef = this.dialog.open(ModifyPasswordComponent, {
+        disableClose: true,
+        data: { id: id }
+      });
+      this.modifyPasswordDialogRef.componentInstance.errorSend.subscribe(result => {
+        this.isLoading = true;
+        if ( result === 'none' ) {
+          this.modifyPasswordDialogRef?.componentInstance.closeDialog()
+          this.modifyPasswordDialogRef?.afterClosed().subscribe( result => {
+            this.isLoading = false;
+          })
+        }
+      }, err => { this.err = err })
+    }
 
   onSwitch() {
     this.themeMode.onSwitch();

@@ -7,7 +7,6 @@
   left: 0 !important;
   height: 450px !important;
 }
-
 .theme-widget {
   margin-right: 2rem;
 }
@@ -38,6 +37,10 @@ button.mat-focus-indicator.mat-icon-button.mat-button-base {
 
 button.mat-focus-indicator.mat-warn.mat-flat-button.mat-button-base.ng-star-inserted {
   margin-right: 0 !important;
+}
+
+button.mat-focus-indicator.mat-warn.mat-flat-button.mat-button-base.ng-star-inserted.reset {
+  margin: 10px !important;
 }
 
 @media (max-width: 1023px) {

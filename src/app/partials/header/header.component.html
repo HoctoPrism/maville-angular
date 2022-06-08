@@ -6,6 +6,7 @@
         <mat-menu #menu="matMenu">
           <button class="size-menu-deroulant color-text" mat-menu-item routerLink="accueil">Accueil</button>
           <button class="size-menu-deroulant color-text" mat-menu-item *ngIf="user.roles =='ROLE_ADMIN'" [matMenuTriggerFor]="admin">Administration</button>
+          <button mat-flat-button class="reset" color="warn" (click)="modifyPasswordDialog(user.id)" *ngIf="logged">Modifier votre mot de passe</button>
         </mat-menu>
         <mat-menu #admin="matMenu">
           <button class="size-menu-deroulant color-text" mat-menu-item routerLink="admin/user">Utilisateurs</button>
