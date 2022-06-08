@@ -68,16 +68,16 @@
                 </div>
                 <div class="form-group">
                   <mat-form-field appearance="outline">
-                      <mat-label>
-                          Entrer une couleur
-                          <span *ngIf="newFestivalForm.controls['color'].hasError('required')">
-                              *
-                          </span>
-                      </mat-label>
-                      <input matInput [ngxMatColorPicker]="picker" formControlName="color" />
-                      <ngx-mat-color-toggle matSuffix [for]="picker"></ngx-mat-color-toggle>
-                      <ngx-mat-color-picker #picker></ngx-mat-color-picker>
-                  </mat-form-field>
+                    <mat-label>
+                        Entrer une couleur
+                        <span *ngIf="newFestivalForm.controls['color'].hasError('required')">
+                            *
+                        </span>
+                    </mat-label>
+                    <input matInput [ngxMatColorPicker]="picker" formControlName="color" />
+                    <ngx-mat-color-toggle matSuffix [for]="picker"></ngx-mat-color-toggle>
+                    <ngx-mat-color-picker #picker></ngx-mat-color-picker>
+                </mat-form-field>
                 </div>
             </div>
 

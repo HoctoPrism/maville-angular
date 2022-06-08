@@ -44,6 +44,7 @@ export class FestivalService {
   // Create a new festival
   newFestival(form: any) {
     this.err = null;
+    form['user'] = this.user.id;
     if (form["color"]) {
       let str = "";
       form["color"] = str.concat('#', form["color"]["hex"]);
@@ -58,8 +59,8 @@ export class FestivalService {
 
   // Put festival -> Ask for the form value
   updateFestival(form: any, id: number) {
-    form['user'] = this.user.id;
     this.err = null;
+    form['user'] = this.user.id;
     let str = "";
     if(typeof form['color'] === 'object'){
       form["color"] = str.concat('#', form["color"]["hex"]);
@@ -70,7 +71,6 @@ export class FestivalService {
         "name": form["name"],
         "description": form["description"],
         "type": form["type"],
-        "image": form["image"],
         "dateStart": form["dateStart"],
         "dateEnd": form["dateEnd"],
         "cancelled": form["cancelled"],
