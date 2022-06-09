@@ -6,9 +6,9 @@
     </div>
 
     <div *ngIf="!isLoading" class="festival-list">
-        <mat-grid-list cols="3" rowHeight="fit" colHeight="fit" style="height: 600px" gutterSize="10px" >
+        <mat-grid-list cols="3" rowHeight="fit" colHeight="fit" style="height: 600px" gutterSize="10px" *ngIf="festivals">
             <mat-grid-tile rowspan="1" colspan="1" *ngFor="let festival of festivals">
-                <mat-card class="festival-card" [ngStyle]="myStyle(festival.color)">
+                <mat-card class="festival-card" [ngStyle]="myStyle(festival.color)" *ngIf="!festival.cancelled; else annule">
                     <div class="inner-festival-card">
                         <div class="festival_name" [ngStyle]="myStyleColor(festival.color)">{{ festival.name|titlecase }}</div>
                         <div class="festival_type">Genre : {{ festival.type|titlecase }}</div>
@@ -21,6 +21,21 @@
                         </div>
                     </div>
                 </mat-card>
+                <ng-template #annule>
+                    <mat-card class="festival-card" [ngStyle]="myStyle(festival.color)">
+                        <div class="inner-festival-card-annule">
+                            <div class="festival_name_annule" [ngStyle]="myStyleColor(festival.color)">{{ festival.name|titlecase }} <span class="festival-card-annule">ANNULE</span></div>
+                            <div class="festival_type">Genre : {{ festival.type|titlecase }}</div>
+                            <div class="festival_description">{{ festival.description }}</div>
+                            <div class="festival_date">
+                                <div>les dates</div>
+                                <span [ngStyle]="myStyleColor(festival.color)">Du {{ festival.dateStart|date: 'dd/MM/YYYY' }} à {{ festival.dateStart|date: 'HH:mm' }}</span> 
+                                au 
+                                <span [ngStyle]="myStyleColor(festival.color)">{{ festival.dateEnd|date: 'dd/MM/YYYY' }} à {{ festival.dateEnd|date: 'HH:mm' }}</span>
+                            </div>
+                        </div>
+                    </mat-card>
+                </ng-template>
             </mat-grid-tile>
         </mat-grid-list>
     </div>
