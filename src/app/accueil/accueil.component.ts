@@ -25,8 +25,6 @@ export class AccueilComponent implements OnInit {
       this.isLoading = true;
       this.festivals = res;
       this.isLoading = false;
-      console.log(this.festivals[0]);
-      
     });
   }
 
