@@ -6,13 +6,14 @@
     </div>
 
     <div *ngIf="!isLoading" class="festival-list">
-        <mat-grid-list cols="3" rowHeight="fit" colHeight="fit" style="height: 600px" gutterSize="10px" *ngIf="festivals">
+        <mat-grid-list cols="3" rowHeight="fit" colHeight="fit" style="height: 700px" gutterSize="10px" *ngIf="festivals">
             <mat-grid-tile rowspan="1" colspan="1" *ngFor="let festival of festivals">
                 <mat-card class="festival-card" [ngStyle]="myStyle(festival.color)" *ngIf="!festival.cancelled; else annule">
                     <div class="inner-festival-card">
                         <div class="festival_name" [ngStyle]="myStyleColor(festival.color)">{{ festival.name|titlecase }}</div>
                         <div class="festival_type">Genre : {{ festival.type|titlecase }}</div>
                         <div class="festival_description">{{ festival.description }}</div>
+                        <div>Lieu : <span [ngStyle]="myStyleColor(festival.color)">{{ festival.place.name }}</span></div>
                         <div class="festival_date">
                             <div>les dates</div>
                             <span [ngStyle]="myStyleColor(festival.color)">Du {{ festival.dateStart|date: 'dd/MM/YYYY' }} à {{ festival.dateStart|date: 'HH:mm' }}</span> 
@@ -27,6 +28,7 @@
                             <div class="festival_name_annule" [ngStyle]="myStyleColor(festival.color)">{{ festival.name|titlecase }} <span class="festival-card-annule">ANNULE</span></div>
                             <div class="festival_type">Genre : {{ festival.type|titlecase }}</div>
                             <div class="festival_description">{{ festival.description }}</div>
+                            <div>Lieu : <span [ngStyle]="myStyleColor(festival.color)">{{ festival.place.name }}</span></div>
                             <div class="festival_date">
                                 <div>les dates</div>
                                 <span [ngStyle]="myStyleColor(festival.color)">Du {{ festival.dateStart|date: 'dd/MM/YYYY' }} à {{ festival.dateStart|date: 'HH:mm' }}</span> 
@@ -39,5 +41,18 @@
             </mat-grid-tile>
         </mat-grid-list>
     </div>
-
+    <h2 class="text-center fw-bold">Carte des Lieux</h2>
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+        <div class="map-container">
+            <div class="map-frame">
+            <div id="map"></div>
+            </div>
+        </div>
+        <div class="side-map">
+            <h3 class="fw-bold">Liste des lieux</h3>
+            <div *ngFor="let place of places">
+                <div>{{ place.name }}</div>
+            </div>
+        </div>
+    </div>
 </section>

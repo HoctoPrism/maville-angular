@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { sample } from 'rxjs/internal/operators/sample';
 import { FestivalService } from '../services/festival/festival.service';
 import { HeaderTitleService } from '../services/header-title/header-title.service';
+import { MapService } from '../services/map/map.service';
 
 @Component({
   selector: 'app-accueil',
@@ -11,11 +12,13 @@ import { HeaderTitleService } from '../services/header-title/header-title.servic
 export class AccueilComponent implements OnInit {
 
   festivals:any = [];
+  places:any = [];
   isLoading = false;
 
   constructor(
     private headerTitleService: HeaderTitleService,
-    private festivalService: FestivalService
+    private festivalService: FestivalService,
+    private mapService: MapService
   ) {
     this.headerTitleService.setTitle("Accueil")
   }
@@ -47,6 +50,18 @@ export class AccueilComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadData()
+  }
+
+  ngAfterViewInit(): void {
+      this.mapService.getAllPlaces().subscribe((res) => {
+      this.places = res;
+      this.isLoading = true;
+      this.mapService.initMap();
+      res.forEach((element: { name: string; lat: string; lng:string; }) => {
+        this.mapService.setData(element.name, element.lat, element.lng)
+      });
+      this.isLoading = false;
+    });
   }
 
 }
