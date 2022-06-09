@@ -39,6 +39,16 @@
                 <input matInput placeholder="Entrez un type (musique, art...)" formControlName="type">
             </mat-form-field>
 
+            <div class="form-group">
+              <mat-form-field appearance="outline">
+                  <mat-label *ngIf="data.tag"><span *ngFor="let item of data.tag">{{ item.name }} </span></mat-label>
+                  <mat-label *ngIf="data.tag.length == 0">Tag(s)</mat-label>
+                  <mat-select formControlName="tag" multiple>
+                    <mat-option *ngFor="let tag of tagList" [value]="tag">{{ tag.name }}</mat-option>
+                  </mat-select>
+              </mat-form-field>
+          </div>
+            
             <div fxLayout="column" fxLayoutAlign="center center">
                 <div class="form-group">
                   <mat-form-field color="accent" appearance="outline">
@@ -86,7 +96,6 @@
               <input matInput [ngxMatColorPicker]="picker" formControlName="color"/>
               <ngx-mat-color-toggle matSuffix [for]="picker"></ngx-mat-color-toggle>
               <ngx-mat-color-picker #picker></ngx-mat-color-picker>
-  
           </mat-form-field>
 
         </div>

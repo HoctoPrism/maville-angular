@@ -39,6 +39,15 @@
                 <input matInput placeholder="Entrez un type (musique, art...)" formControlName="type">
             </mat-form-field>
 
+            <div class="form-group">
+              <mat-form-field appearance="outline">
+                  <mat-label>Tag(s)</mat-label>
+                  <mat-select formControlName="tag" multiple>
+                  <mat-option *ngFor="let tag of tagList" [value]="tag">{{ tag.name }}</mat-option>
+                  </mat-select>
+              </mat-form-field>
+            </div>
+
             <div fxLayout="column" fxLayoutAlign="center center">
                 <div class="form-group">
                   <mat-form-field color="accent" appearance="outline">

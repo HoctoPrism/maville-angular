@@ -4,6 +4,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { FestivalService } from 'src/app/services/festival/festival.service';
+import { TagService } from 'src/app/services/tag/tag.service';
 import {environment} from "../../../../environments/environment";
 
 @Component({
@@ -19,11 +20,13 @@ export class NewFestivalComponent implements OnInit {
   endpoint: string = environment.apiUrl;
   err: any;
   isLoading?:boolean;
+  tagList:any;
 
   constructor(public fb: FormBuilder,
     public authService: AuthService,
     private _snackBar: MatSnackBar,
     public festivalService: FestivalService,
+    public tagService: TagService, 
     public dialogRef: MatDialogRef<NewFestivalComponent>) {
 
     this.newFestivalForm = this.fb.group({
@@ -33,9 +36,14 @@ export class NewFestivalComponent implements OnInit {
       dateStart: ['', Validators.required],
       dateEnd: ['', Validators.required],
       cancelled: [''],
-      color:['', Validators.required]
+      color:['', Validators.required],
+      tag:['']
     });
 
+    this.tagService.getAllTags().subscribe(
+      data => { this.tagList = data },
+      err => { console.log(err)
+    });
   }
   ngOnInit(): void {
     this.isLoading = false;

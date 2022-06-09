@@ -4,6 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { FestivalService } from 'src/app/services/festival/festival.service';
+import { TagService } from 'src/app/services/tag/tag.service';
 
 @Component({
   selector: 'app-update-festival',
@@ -16,32 +17,42 @@ export class UpdateFestivalComponent implements OnInit {
   err:any;
   oneFestival:any;
   isLoading?:boolean;
-  
-  constructor( public festivalService: FestivalService, 
+  tagList:any;
+
+  constructor( 
+    public festivalService: FestivalService, 
+    public tagService: TagService, 
     public router: Router,
     public fb: FormBuilder,
     private _snackBar: MatSnackBar,
+    public dialogRef: MatDialogRef<UpdateFestivalComponent>,
     @Inject (MAT_DIALOG_DATA)  public data: any,
-    public dialogRef: MatDialogRef<UpdateFestivalComponent>) { 
+  ) { 
       this.updateFestivalForm = this.fb.group({
         name: ['', Validators.required],
         description: [''],
         type: [''],
-        image: [''],
         dateStart: ['', Validators.required],
         dateEnd: ['', Validators.required],
         cancelled: [''],
-        color: ['']
+        color: [''],
+        tag:['']
       });
+
+      this.tagService.getAllTags().subscribe(
+        data => { this.tagList = data },
+        err => { console.log(err) }
+      );
 
       this.updateFestivalForm.get('name')?.setValue(data.name);
       this.updateFestivalForm.get('description')?.setValue(data.description);
       this.updateFestivalForm.get('type')?.setValue(data.type);
-      this.updateFestivalForm.get('image')?.setValue(data.image);
       this.updateFestivalForm.get('dateStart')?.setValue(data.dateStart);
       this.updateFestivalForm.get('dateEnd')?.setValue(data.dateEnd);
       this.updateFestivalForm.get('cancelled')?.setValue(data.cancelled);
       this.updateFestivalForm.get('color')?.setValue(data.color);
+      this.updateFestivalForm.get('tag')?.setValue(data.tag);
+
     }
 
     closeDialog() {
@@ -66,7 +77,7 @@ export class UpdateFestivalComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    this.isLoading = false;
+    this.isLoading = false;  
   }
 
 }

@@ -36,14 +36,7 @@ export class FestivalComponent implements OnInit {
     public dialog: MatDialog,
     public datePipe: DatePipe
   ) {
-
     this.headerTitleService.setTitle("Liste des festival");
-
-    // Get all festivals
-      this.festivalService.getAllFestivals().subscribe(
-      data => { this.festivals = data },
-      err => { console.log(err.status) }
-    );
   }
 
   @ViewChild(MatPaginator) paginator?: MatPaginator;
@@ -56,7 +49,7 @@ export class FestivalComponent implements OnInit {
       this.festivals = new MatTableDataSource(this.festivals);
       this.festivals.paginator = this.paginator;   
       this.festivalLength = this.festivals.data.length;
-      this.isLoading = false;
+      this.isLoading = false;    
     });
 
   }

@@ -129,6 +129,12 @@ $dark-theme: mat.define-dark-theme(( color: ( primary: $dark-palette, accent: $l
   .mat-input-element {
     caret-color: mat-color($dark-palette, 50) !important
   }
+  .mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+    color: mat-color($dark-palette, 200);
+  }
+  .mat-primary .mat-pseudo-checkbox-checked, .mat-primary .mat-pseudo-checkbox-indeterminate {
+    background-color: mat-color($dark-palette, 200);
+  }
   .text-theme {
     color: mat-color($light-palette) !important;
   }

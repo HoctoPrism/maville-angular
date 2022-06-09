@@ -44,12 +44,21 @@ export class FestivalService {
   // Create a new festival
   newFestival(form: any) {
     this.err = null;
+    let tag:any = [];
     form['user'] = this.user.id;
     if (form["color"]) {
       let str = "";
       form["color"] = str.concat('#', form["color"]["hex"]);
     } else {
       form["color"] = null;
+    }
+    if (form['tag']) {
+      form['tag'].forEach((element: { [x: string]: any; }) => {
+        tag.push(element.id)
+      });
+      form['tag'] = tag;
+    } else {
+      form['tag'] = []
     }
     this.dataChange = form;
     return this.http.post<any>(`${this.endpoint}/festival/new`, form).pipe(
@@ -61,9 +70,18 @@ export class FestivalService {
   updateFestival(form: any, id: number) {
     this.err = null;
     form['user'] = this.user.id;
+    let tag:any = [];
     let str = "";
     if(typeof form['color'] === 'object'){
       form["color"] = str.concat('#', form["color"]["hex"]);
+    }
+    if (form['tag']) {
+      form['tag'].forEach((element: { [x: string]: any; }) => {
+        tag.push(element.id)
+      });
+      form['tag'] = tag;
+    } else {
+      form['tag'] = []
     }
     this.dataChange = new BehaviorSubject<any>(
       {
@@ -74,9 +92,11 @@ export class FestivalService {
         "dateStart": form["dateStart"],
         "dateEnd": form["dateEnd"],
         "cancelled": form["cancelled"],
-        "color": form["color"]
+        "color": form["color"],
+        "tag": form["tag"],
       }
     )
+    
     return this.http.put<any>(`${this.endpoint}/festival/edit/${id}`, form).pipe(
       catchError(this.handleError),
     )
