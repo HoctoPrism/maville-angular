@@ -1,0 +1,35 @@
+<div fxLayout="row" fxLayoutAlign="space-evenly center">
+    <mat-progress-spinner mode="indeterminate" color="warn" *ngIf="isLoading" ></mat-progress-spinner>
+</div>
+
+<div *ngIf="!isLoading">
+    <div class="container">
+        <form [formGroup]="updateTagForm" (ngSubmit)="UpdateTag()" fxLayout="column" fxLayoutAlign="center center">
+          <h3>Editer un tag</h3>
+          <div>
+              <div fxLayout="column" fxLayoutAlign="center center">
+              <div *ngIf="err" class="text-warn">
+                  {{ err.name }}
+              </div>
+              <mat-form-field appearance="outline">
+                  <mat-label>
+                      Nom du tag
+                      <span *ngIf="updateTagForm.controls['name'].hasError('required')">
+                          *
+                      </span>
+                  </mat-label>
+                  <input matInput placeholder="Entrez un nom" formControlName="name">
+                  <mat-error [hidden]="updateTagForm.controls['name'].untouched || updateTagForm.controls['name'].valid">
+                      Veuillez renseigner nom pour le tag
+                  </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div fxLayout="row" fxLayoutAlign="center center">
+              <button mat-flat-button color="warn" type="submit" [disabled]="updateTagForm.invalid" >Valider</button>
+              <button mat-button mat-dialog-close class="button-close">Annuler</button>
+          </div>
+        </form>
+
+    </div>
+</div>

@@ -1,0 +1,17 @@
+<div fxLayout="row" fxLayoutAlign="space-evenly center">
+  <mat-progress-spinner mode="indeterminate" color="warn" *ngIf="isLoading" ></mat-progress-spinner>
+</div>
+
+
+<div *ngIf="!isLoading">
+  <div class="text-theme">
+    <h1 fxLayoutAlign="center space-between" [style.margin-bottom]="'10px'" mat-dialog-title>Confirmer la suppression</h1>
+    <div mat-dialog-content [style.margin-bottom]="'10px'">
+      <div>Etes vous sur de vouloir supprimer : <strong>{{ data.name }}</strong></div>
+    </div>
+    <div mat-dialog-actions fxLayoutAlign="center space-between">
+      <button mat-flat-button  color="warn" (click)="deleteTag(data.id)">Confirmer</button>
+      <button mat-button mat-dialog-close [style.border]="'1px solid #A5B1C6'">Close</button>
+    </div>
+  </div>
+</div>

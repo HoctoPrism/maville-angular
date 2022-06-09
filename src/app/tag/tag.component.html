@@ -1,0 +1,46 @@
+<div class="container">
+    <mat-grid-list cols="4" rowHeight="fit" colHeight="fit" gutterSize="10px" style="height: 700px">
+
+        <mat-grid-tile rowspan="1" colspan="4" >
+            <div fxLayout="row" fxLayoutAlign="space-evenly center">
+                <mat-progress-spinner mode="indeterminate" color="warn" *ngIf="isLoading"></mat-progress-spinner>
+            </div>
+            <div *ngIf="!isLoading">
+                <table mat-table class="mat-elevation-z8 bg-theme text-theme tableStripe w-100" [dataSource]="tags">
+                    <!-- Id Column -->
+                    <ng-container matColumnDef="id">
+                        <th mat-header-cell *matHeaderCellDef> ID </th>
+                        <td mat-cell *matCellDef="let tag">
+                            <div *ngIf="tag.id" title="{{tag.id}}"> {{tag.id}} </div>
+                        </td>
+                    </ng-container>
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef> NOM </th>
+                        <td mat-cell *matCellDef="let tag">
+                            <div *ngIf="tag.name" title="{{tag.name}}"> {{tag.name}} </div>
+                        </td>
+                    </ng-container>
+                    <!-- Options Column -->
+                    <ng-container matColumnDef="options">
+                        <th mat-header-cell *matHeaderCellDef class="text-end">
+                            <td mat-cell *matCellDef="let tags" class="text-end">
+                            <a (click)="updateDialog(tags.id, tags.name)">
+                                <mat-icon> border_color </mat-icon>
+                            </a>
+                            <a (click)="deleteDialog(tags.id, tags.name)">
+                                <mat-icon>delete</mat-icon>
+                            </a>
+                        </td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+                <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page" class="bg-theme text-theme"></mat-paginator>
+            </div>
+            <div class="margin-button" fxLayoutAlign="end">
+              <button class="color-text-button-red" mat-flat-button color="warn" (click)="newDialog()">Créer un tag</button>
+            </div>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>

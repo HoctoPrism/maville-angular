@@ -6,7 +6,7 @@
     </div>
 
     <div *ngIf="!isLoading" class="festival-list">
-        <mat-grid-list cols="3" rowHeight="fit" colHeight="fit" style="height: 400px" gutterSize="10px" >
+        <mat-grid-list cols="3" rowHeight="fit" colHeight="fit" style="height: 600px" gutterSize="10px" >
             <mat-grid-tile rowspan="1" colspan="1" *ngFor="let festival of festivals">
                 <mat-card class="festival-card" [ngStyle]="myStyle(festival.color)">
                     <div class="inner-festival-card">

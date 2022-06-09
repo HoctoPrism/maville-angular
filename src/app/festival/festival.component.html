@@ -77,7 +77,7 @@
                     <ng-container matColumnDef="options">
                         <th mat-header-cell *matHeaderCellDef class="text-end">
                             <td mat-cell *matCellDef="let festivals" class="text-end">
-                            <a (click)="updateDialog(festivals.id, festivals.name, festivals.description, festivals.type, festivals.image, festivals.dateStart, festivals.dateEnd, festivals.cancelled, festivals.color)">
+                            <a (click)="updateDialog(festivals.id, festivals.name, festivals.description, festivals.type, festivals.dateStart, festivals.dateEnd, festivals.cancelled, festivals.color, festivals.tag)">
                                 <mat-icon> border_color </mat-icon>
                             </a>
                             <a (click)="deleteDialog(festivals.id, festivals.name)">

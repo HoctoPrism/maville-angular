@@ -4,13 +4,13 @@ import { AccueilComponent } from './accueil/accueil.component';
 import { AdminComponent } from './admin/admin.component';
 import { SigninComponent } from './partials/signin/signin.component';
 import { AuthGuard } from './guard/auth-guard';
-import { ConnexionGuard } from './guard/connexion-guard';
 import { UserComponent } from './user/user.component';
 import { FestivalComponent } from './festival/festival.component';
+import { TagComponent } from './tag/tag.component';
 
 const routes: Routes = [
   { path: "accueil", component: AccueilComponent},
-  { path: "", component: AccueilComponent},
+  { path: "", component: SigninComponent},
   { path: "login", component: SigninComponent },
   {
     path: 'admin', component: AdminComponent,
@@ -21,6 +21,7 @@ const routes: Routes = [
     children: [
       { path: 'user', component: UserComponent },
       { path: 'festival', component: FestivalComponent },
+      { path: 'tag', component: TagComponent },
     ]
   }
 ];

@@ -44,6 +44,10 @@ import { UpdateFestivalComponent } from './festival/dialogs/update/update-festiv
 import { DeleteFestivalComponent } from './festival/dialogs/delete/delete-festival.component';
 import { DatePipe } from '@angular/common';
 import { MatColorFormats, MAT_COLOR_FORMATS, NgxMatColorPickerModule } from '@angular-material-components/color-picker';
+import { NewTagComponent } from './tag/dialogs/new/new-tag.component';
+import { UpdateTagComponent } from './tag/dialogs/update/update-tag.component';
+import { DeleteTagComponent } from './tag/dialogs/delete/delete-tag.component';
+import { TagComponent } from './tag/tag.component';
 
 export const NGX_MAT_COLOR_FORMATS: MatColorFormats = {
   display: {
@@ -67,7 +71,11 @@ export const NGX_MAT_COLOR_FORMATS: MatColorFormats = {
     FestivalComponent,
     NewFestivalComponent,
     UpdateFestivalComponent,
-    DeleteFestivalComponent
+    DeleteFestivalComponent,
+    TagComponent,
+    NewTagComponent,
+    UpdateTagComponent,
+    DeleteTagComponent
   ],
   imports: [
     BrowserModule,
