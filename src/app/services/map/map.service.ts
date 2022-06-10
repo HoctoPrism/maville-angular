@@ -6,13 +6,11 @@ import { environment } from 'src/environments/environment';
 import * as L from 'leaflet';
 
 const iconRetinaUrl = 'assets/marker-icon-2x.png';
-const iconUrl = 'assets/marker-icon.png';
-const shadowUrl = 'assets/marker-shadow.png';
+const iconUrl = 'assets/img/map-marker.svg';
 const iconDefault = L.icon({
   iconRetinaUrl,
   iconUrl,
-  shadowUrl,
-  iconSize: [25, 41],
+  iconSize: [25, 37],
   iconAnchor: [12, 41],
   popupAnchor: [1, -34],
   tooltipAnchor: [16, -28],
@@ -46,7 +44,7 @@ export class MapService {
             center: [ 45.042768, 3.882936 ],
             zoom: 15
         });
-        const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        const tiles = L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png', {
             maxZoom: 18,
             minZoom: 3,
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -64,7 +62,7 @@ export class MapService {
             "properties": {
                 "name": name
             }
-        };        
+        };
         L.geoJSON(this.geojsonFeature).addTo(this.map).bindPopup(name);
     }
 
