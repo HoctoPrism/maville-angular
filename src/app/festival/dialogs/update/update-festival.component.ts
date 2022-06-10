@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { FestivalService } from 'src/app/services/festival/festival.service';
 import { TagService } from 'src/app/services/tag/tag.service';
+import {PlaceService} from "../../../services/place/tag.service";
 
 @Component({
   selector: 'app-update-festival',
@@ -18,16 +19,18 @@ export class UpdateFestivalComponent implements OnInit {
   oneFestival:any;
   isLoading?:boolean;
   tagList:any;
+  placeList:any;
 
-  constructor( 
-    public festivalService: FestivalService, 
-    public tagService: TagService, 
+  constructor(
+    public festivalService: FestivalService,
+    public tagService: TagService,
     public router: Router,
     public fb: FormBuilder,
     private _snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<UpdateFestivalComponent>,
+    public placeService: PlaceService,
     @Inject (MAT_DIALOG_DATA)  public data: any,
-  ) { 
+  ) {
       this.updateFestivalForm = this.fb.group({
         name: ['', Validators.required],
         description: [''],
@@ -36,11 +39,16 @@ export class UpdateFestivalComponent implements OnInit {
         dateEnd: ['', Validators.required],
         cancelled: [''],
         color: [''],
-        tag:['']
+        tag:[''],
+        place:['']
       });
 
       this.tagService.getAllTags().subscribe(
         data => { this.tagList = data },
+        err => { console.log(err) }
+      );
+      this.placeService.getAllPlaces().subscribe(
+        data => { this.placeList = data },
         err => { console.log(err) }
       );
 
@@ -52,6 +60,7 @@ export class UpdateFestivalComponent implements OnInit {
       this.updateFestivalForm.get('cancelled')?.setValue(data.cancelled);
       this.updateFestivalForm.get('color')?.setValue(data.color);
       this.updateFestivalForm.get('tag')?.setValue(data.tag);
+      this.updateFestivalForm.get('place')?.setValue(data.place);
 
     }
 
@@ -61,14 +70,14 @@ export class UpdateFestivalComponent implements OnInit {
 
     UpdateFestival(){
       this.isLoading = true;
-      this.err = null; 
+      this.err = null;
       this.festivalService.updateFestival(this.updateFestivalForm.value, this.data['id']).subscribe(
-        data => { 
+        data => {
           data = data,
           this.errorSend.emit('none'); // To send 'none' to parent
           this._snackBar.open("Vous avez mise à jour un festival !", 'fermer', {duration : 5000})
-        }, 
-        err => { 
+        },
+        err => {
           this.isLoading = false;
           this.errorSend.emit(err); // To send the error object to parent
           this.err = err
@@ -77,7 +86,7 @@ export class UpdateFestivalComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    this.isLoading = false;  
+    this.isLoading = false;
   }
 
 }

@@ -4,6 +4,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { FestivalService } from 'src/app/services/festival/festival.service';
+import { PlaceService } from 'src/app/services/place/tag.service';
 import { TagService } from 'src/app/services/tag/tag.service';
 import {environment} from "../../../../environments/environment";
 
@@ -21,13 +22,16 @@ export class NewFestivalComponent implements OnInit {
   err: any;
   isLoading?:boolean;
   tagList:any;
+  placeList:any;
 
   constructor(public fb: FormBuilder,
     public authService: AuthService,
     private _snackBar: MatSnackBar,
     public festivalService: FestivalService,
-    public tagService: TagService, 
-    public dialogRef: MatDialogRef<NewFestivalComponent>) {
+    public tagService: TagService,
+    public placeService: PlaceService,
+    public dialogRef: MatDialogRef<NewFestivalComponent>
+  ) {
 
     this.newFestivalForm = this.fb.group({
       name: ['', Validators.required],
@@ -37,11 +41,16 @@ export class NewFestivalComponent implements OnInit {
       dateEnd: ['', Validators.required],
       cancelled: [''],
       color:['', Validators.required],
-      tag:['']
+      tag:[''],
+      place:['']
     });
 
     this.tagService.getAllTags().subscribe(
       data => { this.tagList = data },
+      err => { console.log(err)
+    });
+    this.placeService.getAllPlaces().subscribe(
+      data => { this.placeList = data },
       err => { console.log(err)
     });
   }
@@ -65,7 +74,7 @@ export class NewFestivalComponent implements OnInit {
         this.isLoading = false;
         this.errorSend.emit(err); // To send the error object to parent
         console.log(err);
-        
+
         this.err = err // to send the error object to the template
       }
     );

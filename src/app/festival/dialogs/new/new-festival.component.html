@@ -48,6 +48,15 @@
               </mat-form-field>
             </div>
 
+            <div class="form-group">
+              <mat-form-field appearance="outline">
+                  <mat-label>Lieu</mat-label>
+                  <mat-select formControlName="place">
+                  <mat-option *ngFor="let place of placeList" [value]="place">{{ place.name }}</mat-option>
+                  </mat-select>
+              </mat-form-field>
+            </div>
+
             <div fxLayout="column" fxLayoutAlign="center center">
                 <div class="form-group">
                   <mat-form-field color="accent" appearance="outline">

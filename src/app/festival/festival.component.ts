@@ -22,7 +22,7 @@ export class FestivalComponent implements OnInit {
   endpoint: string = environment.apiUrl;
   err: any;
   festivals: any;
-  displayedColumns = ["id", "name", "description", "type", "dateStart", "dateEnd", "cancelled", "color", "user", "tag", "options"];
+  displayedColumns = ["id", "name", "description", "type", "dateStart", "dateEnd", "cancelled", "color", "user", "tag", "place", "options"];
   oneFestival: any;
   newDialogRef?: MatDialogRef<NewFestivalComponent>;
   updateDialogRef?: MatDialogRef<UpdateFestivalComponent>;
@@ -47,9 +47,9 @@ export class FestivalComponent implements OnInit {
       this.isLoading = true;
       this.festivals = res;
       this.festivals = new MatTableDataSource(this.festivals);
-      this.festivals.paginator = this.paginator;   
+      this.festivals.paginator = this.paginator;
       this.festivalLength = this.festivals.data.length;
-      this.isLoading = false;    
+      this.isLoading = false;
     });
 
   }
@@ -83,8 +83,8 @@ export class FestivalComponent implements OnInit {
     })
   }
   // Open a dialog that processes the organisme PUT
-  updateDialog(id: number, name: string, description: string, type: string, dateStart: string, dateEnd: string, cancelled: boolean, color:string, tag: any) {
-    this.oneFestival = [id, name, description, type, dateStart, dateEnd, cancelled, color, tag]
+  updateDialog(id: number, name: string, description: string, type: string, dateStart: string, dateEnd: string, cancelled: boolean, color:string, tag: any, place: string) {
+    this.oneFestival = [id, name, description, type, dateStart, dateEnd, cancelled, color, tag, place]
     this.updateDialogRef = this.dialog.open(UpdateFestivalComponent, {
       data: {
         id: id,
@@ -95,7 +95,8 @@ export class FestivalComponent implements OnInit {
         dateEnd: dateEnd,
         cancelled: cancelled,
         color: color,
-        tag: tag
+        tag: tag,
+        place: place
       }, disableClose: true
     })
     this.updateDialogRef?.componentInstance.errorSend.subscribe(result => {

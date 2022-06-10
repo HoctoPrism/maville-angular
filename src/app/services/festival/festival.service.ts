@@ -18,7 +18,7 @@ export class FestivalService {
   dataChange: BehaviorSubject<any> = new BehaviorSubject<any>([]);
 
   constructor(
-    private http: HttpClient, 
+    private http: HttpClient,
     private userService: UserService
   ) {
     this.userService.currentUser().subscribe(
@@ -46,6 +46,7 @@ export class FestivalService {
     this.err = null;
     let tag:any = [];
     form['user'] = this.user.id;
+    form['place'] = form['place']['id'];
     if (form["color"]) {
       let str = "";
       form["color"] = str.concat('#', form["color"]["hex"]);
@@ -61,6 +62,7 @@ export class FestivalService {
       form['tag'] = []
     }
     this.dataChange = form;
+    console.log(form);
     return this.http.post<any>(`${this.endpoint}/festival/new`, form).pipe(
       catchError(this.handleError)
     )
@@ -70,6 +72,7 @@ export class FestivalService {
   updateFestival(form: any, id: number) {
     this.err = null;
     form['user'] = this.user.id;
+    form['place'] = form['place']['id'];
     let tag:any = [];
     let str = "";
     if(typeof form['color'] === 'object'){
@@ -94,9 +97,10 @@ export class FestivalService {
         "cancelled": form["cancelled"],
         "color": form["color"],
         "tag": form["tag"],
+        "place": form["place"],
       }
     )
-    
+
     return this.http.put<any>(`${this.endpoint}/festival/edit/${id}`, form).pipe(
       catchError(this.handleError),
     )
