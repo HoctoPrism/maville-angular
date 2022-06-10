@@ -1,0 +1,63 @@
+<div fxLayout="row" fxLayoutAlign="space-evenly center">
+    <mat-progress-spinner mode="indeterminate" color="warn" *ngIf="isLoading" ></mat-progress-spinner>
+</div>
+
+<div *ngIf="!isLoading">
+    <div class="container">
+        <form [formGroup]="newPlaceForm" (ngSubmit)="newPlace()" fxLayout="column" fxLayoutAlign="center center">
+
+            <h3>Créer un lieu</h3>
+            <div>
+                <div fxLayout="column" fxLayoutAlign="center center">
+                <div *ngIf="err" class="text-warn">
+                    {{ err.name }}
+                </div>
+                <mat-form-field appearance="outline">
+                    <mat-label>
+                        Nom du lieu
+                        <span *ngIf="newPlaceForm.controls['name'].hasError('required')">
+                            *
+                        </span>
+                    </mat-label>
+                    <input matInput placeholder="Entrez un nom" formControlName="name">
+                    <mat-error [hidden]="newPlaceForm.controls['name'].untouched || newPlaceForm.controls['name'].valid">
+                        Veuillez renseigner le nom du lieu
+                    </mat-error>
+                </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>
+                   Lattitude
+                    <span *ngIf="newPlaceForm.controls['lat'].hasError('required')">
+                        *
+                    </span>
+                </mat-label>
+                <input matInput placeholder="Entrez un nom" formControlName="lat">
+                <mat-error [hidden]="newPlaceForm.controls['lat'].untouched || newPlaceForm.controls['lat'].valid">
+                    Veuillez renseigner la lattitude du lieu
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>
+                   Longitude
+                    <span *ngIf="newPlaceForm.controls['lng'].hasError('required')">
+                        *
+                    </span>
+                </mat-label>
+                <input matInput placeholder="Entrez un nom" formControlName="lng">
+                <mat-error [hidden]="newPlaceForm.controls['lng'].untouched || newPlaceForm.controls['lng'].valid">
+                    Veuillez renseigner la longitude du lieu
+                </mat-error>
+            </mat-form-field>
+
+        </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <button mat-flat-button color="warn" type="submit" [disabled]="newPlaceForm.invalid" >Valider</button>
+            <button mat-button mat-dialog-close class="button-close">Annuler</button>
+        </div>
+        </form>
+
+    </div>
+</div>

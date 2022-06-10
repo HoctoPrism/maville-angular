@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ThemeModeService {
-  
+
   checked:any;
 
   constructor() { }
@@ -21,7 +21,7 @@ export class ThemeModeService {
     }
     this.themeSlideChecked();
   }
-  
+
   // Allow to change the theme color depending of the mode, set the slide toggle to the correct position
   themeSlideChecked(){
     if (localStorage.getItem('isDark')) {

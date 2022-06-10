@@ -7,6 +7,7 @@ import { AuthGuard } from './guard/auth-guard';
 import { UserComponent } from './user/user.component';
 import { FestivalComponent } from './festival/festival.component';
 import { TagComponent } from './tag/tag.component';
+import {PlaceComponent} from "./place/place.component";
 
 const routes: Routes = [
   { path: "accueil", component: AccueilComponent},
@@ -22,6 +23,7 @@ const routes: Routes = [
       { path: 'user', component: UserComponent },
       { path: 'festival', component: FestivalComponent },
       { path: 'tag', component: TagComponent },
+      { path: 'place', component: PlaceComponent },
     ]
   }
 ];

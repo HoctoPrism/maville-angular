@@ -27,6 +27,7 @@ export class MapService {
 
     endpoint: string = environment.apiUrl;
     geojsonFeature: any;
+    mapUrl?: string;
 
     constructor(private http: HttpClient) {
     }
@@ -40,11 +41,16 @@ export class MapService {
 
     map:any;
     initMap(): void {
+      if (localStorage.getItem('isDark')){
+        this.mapUrl = 'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png'
+      } else {
+        this.mapUrl = 'https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png'
+      }
       this.map = L.map('map', {
             center: [ 45.042768, 3.882936 ],
             zoom: 15
         });
-        const tiles = L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png', {
+        const tiles = L.tileLayer(this.mapUrl, {
             maxZoom: 18,
             minZoom: 3,
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'

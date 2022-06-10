@@ -48,6 +48,10 @@ import { NewTagComponent } from './tag/dialogs/new/new-tag.component';
 import { UpdateTagComponent } from './tag/dialogs/update/update-tag.component';
 import { DeleteTagComponent } from './tag/dialogs/delete/delete-tag.component';
 import { TagComponent } from './tag/tag.component';
+import { PlaceComponent } from './place/place.component';
+import { DeletePlaceComponent } from './place/dialogs/delete/delete-place.component';
+import { NewPlaceComponent } from './place/dialogs/new/new-place.component';
+import { UpdatePlaceComponent } from './place/dialogs/update/update-place.component';
 
 export const NGX_MAT_COLOR_FORMATS: MatColorFormats = {
   display: {
@@ -75,7 +79,11 @@ export const NGX_MAT_COLOR_FORMATS: MatColorFormats = {
     TagComponent,
     NewTagComponent,
     UpdateTagComponent,
-    DeleteTagComponent
+    DeleteTagComponent,
+    PlaceComponent,
+    NewPlaceComponent,
+    UpdatePlaceComponent,
+    DeletePlaceComponent
   ],
   imports: [
     BrowserModule,
